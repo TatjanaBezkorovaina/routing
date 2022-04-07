@@ -1,0 +1,14 @@
+.post {
+  background-color: aqua;
+  padding: 10px;
+  &__wrapper {
+    border: 1px solid orange;
+  }
+  &__title {
+    display: flex;
+    font-weight: bold;
+  }
+  &__text {
+    font-style: italic;
+  }
+}

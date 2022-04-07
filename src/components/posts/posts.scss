@@ -1,0 +1,16 @@
+.posts {
+  &__wrapper {
+    border: 2px dashed darkgreen;
+  }
+
+  &__list {
+    list-style-type: none;
+  }
+
+  &__item {
+    margin-bottom: 10px;
+  }
+  &__item:last-child {
+    margin-bottom: 0;
+  }
+}
