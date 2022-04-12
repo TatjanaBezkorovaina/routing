@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./posts.scss";
 import Post from "../post/Post";
+import Clock from "../closk/Clock";
 
 const Posts = () => {
   const staticPosts = [
@@ -20,6 +21,10 @@ const Posts = () => {
   const [posts, setPosts] = useState(localPosts ? localPosts : staticPosts);
 
   const [title, setTitle] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("posts", JSON.stringify(posts));
+  }, [posts]);
 
   const addPost = (e) => {
     e.preventDefault();
@@ -64,6 +69,7 @@ const Posts = () => {
           </ul>
         </div>
       </div>
+      <Clock date={new Date()} />
     </>
   );
 };
