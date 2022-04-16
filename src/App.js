@@ -6,6 +6,7 @@ import Main from "./pages/Main";
 import React, { useState } from "react";
 import "./app.scss";
 import { ThemeContext, themes } from "./contexts/theme.context";
+import AuthorizationPage from "./pages/authorization/Authorization.page";
 
 const App = () => {
   const [currentTheme, setCurrentTheme] = useState(themes.light);
@@ -45,8 +46,15 @@ const App = () => {
             Зв'язатись
           </Link>
           <br />
-          <Link className="navigation__link" to="/Reviews">
+          <Link
+            className="navigation__link"
+            style={{ marginRight: "25px" }}
+            to="/Reviews"
+          >
             Відгуки
+          </Link>
+          <Link className="navigation__link" to="/Authorization">
+            Авторизація
           </Link>
         </div>
         {/* Content */}
@@ -57,6 +65,8 @@ const App = () => {
           <Route path="/" element={<Main />} />
           {/* Reviews page */}
           <Route path="reviews" element={<Reviews />} />
+          {/* Authorization page */}
+          <Route path="authorization" element={<AuthorizationPage />} />
         </Routes>
       </Router>
     </>
