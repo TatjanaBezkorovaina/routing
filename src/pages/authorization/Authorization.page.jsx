@@ -2,6 +2,7 @@ import React from "react";
 import { Formik } from "formik";
 import axios from "axios";
 import styles from "./authorization.module.scss";
+import Clock from "../../components/closk/Clock";
 
 const AuthorizationPage = () => {
   const formValues = {
@@ -19,19 +20,12 @@ const AuthorizationPage = () => {
     return errors;
   };
 
-  const onSubmit = async (
-    values,
-    { setSubmitting, setErrors, setStatus, resetForm }
-  ) => {
+  const onSubmit = async (values, { setSubmitting, setErrors, setStatus, resetForm }) => {
     console.log(values);
     const headers = new Headers();
 
     await axios
-      .post(
-        "https://beetroot-solodkui.herokuapp.com/beetroot-solodkui/users/authorization",
-        values,
-        headers
-      )
+      .post("https://beetroot-solodkui.herokuapp.com/beetroot-solodkui/users/authorization", values, headers)
       .then((response) => {
         console.log(response);
       })
@@ -52,11 +46,7 @@ const AuthorizationPage = () => {
     <div className={styles.authorizationPage}>
       <div className={styles.authorizationPageWrapper}>
         <h2>Authorization.page</h2>
-        <Formik
-          initialValues={formValues}
-          validate={(values) => validateForm(values)}
-          onSubmit={onSubmit}
-        >
+        <Formik initialValues={formValues} validate={(values) => validateForm(values)} onSubmit={onSubmit}>
           {({
             values,
             errors,
@@ -68,14 +58,7 @@ const AuthorizationPage = () => {
             /* and other goodies */
           }) => (
             <form onSubmit={handleSubmit}>
-              <input
-                type="email"
-                name="email"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.email}
-                placeholder="email"
-              />
+              <input type="email" name="email" onChange={handleChange} onBlur={handleBlur} value={values.email} placeholder="email" />
               {errors.email && touched.email && errors.email}
               <br />
               <input
@@ -89,16 +72,13 @@ const AuthorizationPage = () => {
               />
               {errors.password && touched.password && errors.password}
               <br />
-              <button
-                type="submit"
-                style={{ marginTop: "20px" }}
-                disabled={isSubmitting}
-              >
+              <button type="submit" style={{ marginTop: "20px" }} disabled={isSubmitting}>
                 Submit
               </button>
             </form>
           )}
         </Formik>
+        <Clock date={new Date()} />
       </div>
     </div>
   );
